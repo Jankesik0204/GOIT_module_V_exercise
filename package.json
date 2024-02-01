@@ -1,0 +1,14 @@
+{
+  "name": "qa_automation_ii",
+  "version": "1.0.0",
+  "description": "OPISEK_1_2_3",
+  "main": "cypress.config.js",
+  "devDependencies": {
+    "cypress": "^13.6.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jankesik_1",
+  "license": "ISC"
+}
