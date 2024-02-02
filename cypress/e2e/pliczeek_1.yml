@@ -1,0 +1,42 @@
+config:
+  target: "https://jsonplaceholder.typicode.com"
+  phases:
+    - duration: 300
+      arrivalRate: 10
+  metrics:
+    - name: "responseTime"
+      type: "p95"
+      success: true
+
+scenarios:
+  # Scenariusz 1: Pobierz post, dodaj nowy post, pobierz komentarze do nowego posta
+  - flow:
+      - get:
+          url: "/posts/{{ $randomNumber(1, 100) }}"
+      - post:
+          url: "/posts"
+          json:
+            userId: "{{ $randomNumber(1, 10) }}"
+            title: "Test Post"
+            body: "This is a test post"
+          capture:
+            - json: "$.id"
+              as: "postId"
+      - get:
+          url: "/comments?postId={{ postId }}"
+
+  # Scenariusz 2: Zaktualizuj istniejący post
+  - flow:
+      - post:
+          url: "/posts/{{ $randomNumber(1, 100) }}"
+          json:
+            title: "Updated Post Title"
+
+  # Scenariusz 3: Usuń post
+  - flow:
+      - delete:
+          url: "/posts/{{ postId }}"
+
+payloads:
+  - path: "./payloads/custom_payload.json"
+    field: "customPayload"
