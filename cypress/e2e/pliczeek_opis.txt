@@ -1,0 +1,26 @@
+config definiuje ogólne ustawienia testu, takie jak adres docelowy (target) i fazy testu.
+W sekcji phases konfigurujemy jedną fazę testu trwającą 60 sekund z 5 żądaniami na sekundę (arrivalRate).
+
+W sekcji scenarios definiujemy scenariusze testowe. Pierwszy scenariusz wykonuje żądanie GET do /users/1, a następnie wykonuje żądanie POST, 
+tworząc nowy post i zapisując ID posta do zmiennej postId. Drugi scenariusz wykonuje żądanie GET do posta, którego ID zostało zapisane w poprzednim scenariuszu.
+
+
+
+Dodano więcej scenariuszy, które wykorzystują różne endpointy API, takie jak /posts, /comments, /users, /todos.
+W pierwszym scenariuszu, dla żądania GET do /posts, użyto $randomNumber(1, 100), aby wygenerować losowy numer posta do pobrania.
+W drugim scenariuszu, dla żądania GET do /users, również użyto losowego numeru użytkownika.
+W trzecim scenariuszu, dla żądania GET do /todos, użyto losowego numeru zadania.
+Dodano sekcję payloads, która pozwala na korzystanie z zdefiniowanych plików JSON jako dane do wysyłania w żądaniach.
+
+
+Sekcje hooks pozwalają na podłączenie skryptów przed i po wykonaniu żądania. Można dostosować te skrypty w zależności od potrzeb, na przykład do generowania dynamicznych danych przed żądaniem lub analizowania odpowiedzi po jej otrzymaniu.
+
+
+
+W tym dostosowanym przykładzie:
+
+config.target wskazuje na adres API "JSONPlaceholder".
+W pierwszym scenariuszu, dla żądania GET do /posts, używamy losowego numeru posta.
+W drugim scenariuszu, dla żądania POST do /posts, używamy losowego numeru użytkownika.
+W trzecim scenariuszu, dla żądania POST do aktualizacji posta, również używamy losowego numeru posta.
+W czwartym scenariuszu, dla żądania DELETE do /posts, używamy wcześniej zapisanego postId.
