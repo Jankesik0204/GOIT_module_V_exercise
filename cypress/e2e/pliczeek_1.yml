@@ -1,8 +1,9 @@
 config:
   target: "https://jsonplaceholder.typicode.com"
   phases:
-    - duration: 300
+    - duration: 120
       arrivalRate: 10
+      name: "testy_tesciki"
   metrics:
     - name: "responseTime"
       type: "p95"
